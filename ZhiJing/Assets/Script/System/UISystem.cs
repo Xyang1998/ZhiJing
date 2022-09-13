@@ -11,6 +11,7 @@ public class UISystem : ISystem
     private Text interactingtext;
     public float messageheight=150;
     private UnityAction TickUA = new UnityAction(() => {});
+    public GameObject menu;
     public override void Init()
     {
         interactingtext = interacting.transform.GetComponentInChildren<Text>();
@@ -18,7 +19,7 @@ public class UISystem : ISystem
 
     public override void Tick()
     {
-        
+        HandleMenu();
         TickUA.Invoke();
         
     }
@@ -44,7 +45,25 @@ public class UISystem : ISystem
         interacting.SetActive(false);
         TickUA -= Showinginteracting;
     }
-    
-    
+
+    public void HandleMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("按下E");
+            if (menu.activeSelf)
+            {
+                menu.SetActive(false);
+            }
+            else menu.SetActive(true);
+        }
+    }
+    public void SaveGame()
+    {
+        PlayerController.GetPlayerController().SavePlayerPos();
+        //
+        
+    }
+
 
 }

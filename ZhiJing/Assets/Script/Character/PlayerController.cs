@@ -12,12 +12,12 @@ public class PlayerController : ISystem
     private static  PlayerController playercontroller;
     public PlayerState playerState;
     // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
         GetPlayerComp();
     }
     // Update is called once per frame
-    void Update()
+    public override void Tick()
     {
         player.TalkTo();
     }
@@ -85,6 +85,31 @@ public class PlayerController : ISystem
     {
         player.transform.position = Pos;
     }
-    
+
+    public void SavePlayerPos()
+    {
+        playerState.SavePos(player.transform.position);
+    }
+
+    public Vector2 LoadPlayerPos()
+    {
+        return playerState.LoadPos();
+    }
+
+    public bool NewGameCheck()
+    {
+        return playerState.IsANewGame();
+    }
+
+    public void NewGame()
+    {
+        playerState.NewGame();
+        SetPlayerPos(new Vector3(0,0,0));
+    }
+
+    public void LoadGame()
+    {
+        SetPlayerPos(playerState.LoadPos());
+    }
 
 }

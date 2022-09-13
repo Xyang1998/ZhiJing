@@ -10,6 +10,7 @@ public class SystemMediator : MonoBehaviour
     public GameObject uiSystemobj;
     private EventSystem eventSystem;
     private UISystem uisystem;
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class SystemMediator : MonoBehaviour
 
     private void Update()
     {
+        playerController.Tick();
         uisystem.Tick();
     }
 
@@ -32,19 +34,21 @@ public class SystemMediator : MonoBehaviour
     {
         eventSystem = eventSystemObj.GetComponent<EventSystem>();
         uisystem = uiSystemobj.GetComponent<UISystem>();
+        playerController=PlayerController.GetPlayerController();
     }
 
     private void setMediator()
     {
-        PlayerController.GetPlayerController().setMediator(this);
+        playerController.setMediator(this);
         eventSystem.setMediator(this);
         uisystem.setMediator(this);
     }
 
     private void Init()
     {
+        playerController.Init();
         uisystem.Init();
-        
+        HandleNewGame();
     }
 
     public void Showinteracting(string talkmessage)
@@ -55,5 +59,22 @@ public class SystemMediator : MonoBehaviour
     public void Hideinteracting()
     {
         uisystem.Hideinteracting();
+    }
+
+    public bool NewGameCheck()
+    {
+        return playerController.NewGameCheck();
+    }
+
+    public void HandleNewGame()
+    {
+        if (NewGameCheck())
+        {
+            playerController.NewGame(); //初始化位置及各属性
+        }
+        else
+        {
+            playerController.LoadGame();
+        }
     }
 }

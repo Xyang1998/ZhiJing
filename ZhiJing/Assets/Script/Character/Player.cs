@@ -72,6 +72,7 @@ public class Player : BaseCharacter
         {
             InputX = Input.GetAxis("Horizontal");
             Vector2 input = new Vector2(InputX, 0);
+            Turn(input.x);
             PlayerRigidDody.velocity = input * MoveSpeed;
             //动画部分
         }

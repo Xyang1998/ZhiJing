@@ -6,7 +6,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject
 {
+    private bool IsNewGame = true;
+    public int CurChapter = 0;
     [SerializeField] private float Intelligence = 100;
+    [SerializeField] private Vector2 CurPosition = new Vector2(0,0);
     [SerializeField] private float RenYi = 100;
     [SerializeField] private float YangHui = 100;
     public Dictionary<int, string> Items = new Dictionary<int, string>(); //ID,名称
@@ -65,6 +68,37 @@ public class PlayerState : ScriptableObject
                 Items.Remove(item);
             }
         }
+    }
+
+    public void SavePos(Vector2 savepos)
+    {
+        CurPosition = savepos;
+    }
+
+    public Vector2 LoadPos()
+    {
+        return CurPosition;
+    }
+
+    public void NewGame()
+    {
+        CurChapter = 0;
+        Intelligence = 100;
+        CurPosition = new Vector2(0,0);
+        RenYi = 100;
+        YangHui = 100;
+        Items.Clear();
+        IsNewGame = false;
+    }
+
+    public void StartNewGame()
+    {
+        IsNewGame = true;
+    }
+
+    public bool IsANewGame()
+    {
+        return IsNewGame;
     }
 
     

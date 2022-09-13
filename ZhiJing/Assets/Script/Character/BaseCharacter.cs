@@ -9,6 +9,18 @@ public class BaseCharacter : MonoBehaviour
         
     }
 
+    public virtual void Turn(float direction)
+    {
+        if (direction > 0)
+        {
+            transform.rotation=Quaternion.Euler(0,0,0);
+        }
+        else if(direction<0)
+        {
+            transform.rotation=Quaternion.Euler(0,180,0);
+        }
+    }
+
     public virtual void Dead()
     {
         
