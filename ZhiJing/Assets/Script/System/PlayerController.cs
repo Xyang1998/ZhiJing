@@ -10,6 +10,8 @@ public class PlayerController : ISystem
 {
     private Player player;
     private static  PlayerController playercontroller;
+    private PlayerState playerstate;
+    
     // Start is called before the first frame update
     public override void Init()
     {
@@ -45,15 +47,18 @@ public class PlayerController : ISystem
     }
     public void IntelligenceChange(float x)
     {
-        
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        playerstate.ChangeIntelligence(x);
     }
     public void RenYiChange(float x)
     {
-        
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        playerstate.ChangeRenYi(x);
     }
     public void YangHuiChange(float x)
     {
-       
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        playerstate.ChangeYangHui(x);
     }
     public void PlayerTalkEnd()
     {
@@ -69,14 +74,32 @@ public class PlayerController : ISystem
     }
     public bool IntelligenceChcek(float value)
     {
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        if (playerstate.Showstate().Intelligence >= value)
+        {
+            return true;
+            
+        }
         return false;
     }
     public bool RenYiChcek(float value)
     {
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        if (playerstate.Showstate().RenYi >= value)
+        {
+            return true;
+            
+        }
         return false;
     }
     public bool YangHuiChcek(float value)
-    {
+    {   
+        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
+        if (playerstate.Showstate().YangHui >= value)
+        {
+            return true;
+            
+        }
         return false;
     }
 

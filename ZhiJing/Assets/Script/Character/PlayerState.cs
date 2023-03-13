@@ -50,5 +50,22 @@ public class PlayerState : MonoBehaviour
         Debug.Log(state.YangHui);
 
     }
+    public void ChangeIntelligence(float x)
+    {
+        state.Intelligence += x;
+    }
+    public void ChangeRenYi(float x)
+    {
+        state.RenYi += x;
+    }
+    public void ChangeYangHui(float x)
+    {
+        state.YangHui += x;
+    }
+
+    public State Showstate()
+    {
+        return state;
+    }
     
 }
