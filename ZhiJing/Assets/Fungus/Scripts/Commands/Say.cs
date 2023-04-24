@@ -63,7 +63,9 @@ namespace Fungus
         /// <summary>
         /// Character that is speaking.
         /// </summary>
-        public virtual Character _Character { get { return character; } }
+        public virtual Character _Character { get { return character; }
+            set { character = value; }
+        }
 
         /// <summary>
         /// Portrait that represents speaking character.

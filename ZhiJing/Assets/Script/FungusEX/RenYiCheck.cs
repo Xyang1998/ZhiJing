@@ -14,13 +14,6 @@ public class RenYiCheck : Command
 
     public override void OnEnter()
     {
-        if (PlayerController.GetPlayerController().RenYiChcek(value))
-        {
-            if (var != null)
-            {
-                flowchart.SetBooleanVariable(var,true);
-            }
-        }
-        Continue();
+      
     }
 }

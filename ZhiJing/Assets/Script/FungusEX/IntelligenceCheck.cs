@@ -13,14 +13,7 @@ public class IntelligenceCheck : Command
 
     public override void OnEnter()
     {
-        if (PlayerController.GetPlayerController().IntelligenceChcek(value))
-        {
-            if (var != null)
-            {
-                flowchart.SetBooleanVariable(var,true);
-            }
-        }
-        Continue();
+       
     }
 }
 

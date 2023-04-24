@@ -11,15 +11,15 @@ public class Player : BaseCharacter
     public float MoveSpeed = 5;
     private float InputX;
     private static Player player;
-    private bool canmove = true;
-    private bool cantalk = false;
+    private static bool canmove = true;
+    private static bool cantalk = false;
     private TalkBase CurTalker;
     private Rigidbody2D PlayerRigidDody;
+    private BaseTask baseTask;
 
     private void Awake()
     {
         PlayerRigidDody = GetComponent<Rigidbody2D>();
-
     }
 
     public static Player GetPlayer()
@@ -62,8 +62,7 @@ public class Player : BaseCharacter
     {
         if (Input.GetKeyDown(KeyCode.Space) && TalkCheck())
         {
-            canmove = false;
-            cantalk = false;
+            Lock();
             CurTalker.StartTalk();
             PlayerController.GetPlayerController()._systemMediator.Hideinteracting();
         }
@@ -79,12 +78,20 @@ public class Player : BaseCharacter
             PlayerRigidDody.velocity = input * MoveSpeed;
             //动画部分
         }
-    } 
+    }
+
+    public static void Lock()
+    {
+        cantalk = false;
+        canmove = false;
+        SystemMediator.GetSystemMediator().GetUISystem().Lock();
+    }
 
 
-    public void TalkEnd()//对话结束
+    public static void UnLock()//对话结束
     {
         cantalk = true;
         canmove = true;
+        SystemMediator.GetSystemMediator().GetUISystem().UnLock();
     } 
 }

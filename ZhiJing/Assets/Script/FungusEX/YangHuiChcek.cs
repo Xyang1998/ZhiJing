@@ -14,13 +14,6 @@ public class YangHui : Command
 
     public override void OnEnter()
     {
-        if (PlayerController.GetPlayerController().YangHuiChcek(value))
-        {
-            if (var != null)
-            {
-                flowchart.SetBooleanVariable(var,true);
-            }
-        }
-        Continue();
+       
     }
 }

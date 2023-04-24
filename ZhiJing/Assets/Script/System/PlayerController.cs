@@ -6,12 +6,13 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+
 public class PlayerController : ISystem
 {
     private Player player;
     private static  PlayerController playercontroller;
-    private PlayerState playerstate;
-    
+
+    private PlayerState _playerState;
     // Start is called before the first frame update
     public override void Init()
     {
@@ -30,6 +31,7 @@ public class PlayerController : ISystem
     void GetPlayerComp()
     {
         player=Player.GetPlayer();
+        _playerState = player.GetComponent<PlayerState>();
     }
 
     public Player GetPlayer()
@@ -47,22 +49,19 @@ public class PlayerController : ISystem
     }
     public void IntelligenceChange(float x)
     {
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        playerstate.ChangeIntelligence(x);
+        _playerState.IntelligenceChange(x);
     }
     public void RenYiChange(float x)
     {
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        playerstate.ChangeRenYi(x);
+        _playerState.RenYiChange(x);
     }
     public void YangHuiChange(float x)
     {
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        playerstate.ChangeYangHui(x);
+       _playerState.YangHuiChange(x);
     }
     public void PlayerTalkEnd()
     {
-        player.TalkEnd();
+        Player.UnLock();
     }
     public bool ItemsCheck(List<int> list)
     {
@@ -72,34 +71,45 @@ public class PlayerController : ISystem
     {
         
     }
-    public bool IntelligenceChcek(float value)
+    public bool PlayerValueChcek(PlayerValue playerValue,Condition condition,float value)
     {
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        if (playerstate.Showstate().Intelligence >= value)
+        var method = typeof(PlayerState).GetMethod("GetPlayer" + playerValue.ToString());
+        if (method == null) return false;
+        switch (condition)
         {
-            return true;
-            
+            case Condition.More:
+                if ((float)method.Invoke(_playerState, null) >= value)
+                {
+                    return true;
+                }
+
+                return false;
+            case Condition.Less:
+                if ((float)method.Invoke(_playerState, null) <= value)
+                {
+                    return true;
+                }
+
+                return false;
+            case Condition.Equal:
+                if (Mathf.Abs((float)method.Invoke(_playerState, null) - value)<=0.1)
+                {
+                    return true;
+                }
+
+                return false;
+            default:
+                return false;
+                
+                
         }
+    }
+    public bool RenYiChcek(Condition condition,float value)
+    {
         return false;
     }
-    public bool RenYiChcek(float value)
+    public bool YangHuiChcek(Condition condition,float value)
     {
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        if (playerstate.Showstate().RenYi >= value)
-        {
-            return true;
-            
-        }
-        return false;
-    }
-    public bool YangHuiChcek(float value)
-    {   
-        playerstate = GameObject.Find("Player").GetComponent<PlayerState>();
-        if (playerstate.Showstate().YangHui >= value)
-        {
-            return true;
-            
-        }
         return false;
     }
 

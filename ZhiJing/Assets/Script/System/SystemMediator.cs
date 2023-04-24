@@ -11,11 +11,12 @@ public class SystemMediator : MonoBehaviour
     private EventSystem eventSystem;
     private UISystem uisystem;
     private PlayerController playerController;
+    private TaskSystem taskSystem;
     private static SystemMediator _systemMediator;
 
     public static SystemMediator GetSystemMediator()
     {
-        if (_systemMediator)
+        if (!_systemMediator)
         {
             _systemMediator = GameObject.FindObjectOfType<SystemMediator>().GetComponent<SystemMediator>();
             
@@ -24,10 +25,20 @@ public class SystemMediator : MonoBehaviour
         return _systemMediator;
     }
 
+    public UISystem GetUISystem()
+    {
+        return uisystem;
+    }
+
     public EventSystem GetEventSystem()
     {
         return eventSystem;
         
+    }
+
+    public PlayerController GetPlayerController()
+    {
+        return playerController;
     }
     
     
@@ -49,6 +60,7 @@ public class SystemMediator : MonoBehaviour
     {
         playerController.Tick();
         uisystem.Tick();
+        taskSystem.Tick();
     }
 
     private void GetSystem()
@@ -56,6 +68,7 @@ public class SystemMediator : MonoBehaviour
         eventSystem = eventSystemObj.GetComponent<EventSystem>();
         uisystem = uiSystemobj.GetComponent<UISystem>();
         playerController=PlayerController.GetPlayerController();
+        taskSystem = GetComponent<TaskSystem>();
     }
 
     private void setMediator()
@@ -63,12 +76,15 @@ public class SystemMediator : MonoBehaviour
         playerController.setMediator(this);
         eventSystem.setMediator(this);
         uisystem.setMediator(this);
+        taskSystem.setMediator(this);
     }
 
     private void Init()
     {
+        eventSystem.Init();
         playerController.Init();
         uisystem.Init();
+        taskSystem.Init();
         HandleNewGame();
     }
 

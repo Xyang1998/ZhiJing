@@ -18,7 +18,7 @@ public struct State
 }
 public class PlayerState : MonoBehaviour
 {
-    private State state=new State(0,0,0);
+    private State state;
     private string FilePath = Application.streamingAssetsPath + "/State.json";
     public TaskTest TaskTest;
 
@@ -27,6 +27,7 @@ public class PlayerState : MonoBehaviour
         TaskTest = Resources.Load<TaskTest>("TaskTest");
         Debug.Log(TaskTest.a);
         Load();
+        SystemMediator.GetSystemMediator().GetEventSystem().saveaction += Save;
     }
 
     public void Save()
@@ -43,29 +44,37 @@ public class PlayerState : MonoBehaviour
         string json = File.ReadAllText(FilePath);
         state = JsonUtility.FromJson<State>(json);
         json = File.ReadAllText(Application.streamingAssetsPath + "/test.json");
-        TaskTest = JsonUtility.FromJson<TaskTest>(json);
-        Debug.Log(TaskTest.a);
+        //TaskTest = JsonUtility.FromJson<TaskTest>(json);
+        //Debug.Log(TaskTest.a);
         Debug.Log(state.Intelligence);
         Debug.Log(state.RenYi);
         Debug.Log(state.YangHui);
 
     }
-    public void ChangeIntelligence(float x)
+    public void IntelligenceChange(float x)
     {
-        state.Intelligence += x;
+        state.Intelligence = state.Intelligence+x>=0?state.Intelligence+x:0;
     }
-    public void ChangeRenYi(float x)
+    public void RenYiChange(float x)
     {
-        state.RenYi += x;
+        state.RenYi = state.RenYi+x>=0?state.RenYi+x:0;
     }
-    public void ChangeYangHui(float x)
+    public void YangHuiChange(float x)
     {
-        state.YangHui += x;
+        state.YangHui = state.YangHui+x>0?state.YangHui+x:0;
     }
 
-    public State Showstate()
+    public float GetPlayerIntelligence()
     {
-        return state;
+        return state.Intelligence;
+    }
+    public float GetPlayerRenYi()
+    {
+        return state.RenYi;
+    }
+    public float GetPlayerYangHui()
+    {
+        return state.YangHui;
     }
     
 }
