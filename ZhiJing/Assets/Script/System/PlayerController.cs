@@ -23,9 +23,10 @@ public class PlayerController : ISystem
     {
         player.TalkTo();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         player.Run();
+        player.OpenMyBag();//打开背包 使用fixedupdate会出现卡顿
         
     }
     void GetPlayerComp()

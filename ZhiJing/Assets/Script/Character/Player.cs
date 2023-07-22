@@ -10,9 +10,12 @@ public class Player : BaseCharacter
 {
     public float MoveSpeed = 5;
     private float InputX;
+    public GameObject myBag; //背包
+  
     private static Player player;
     private static bool canmove = true;
     private static bool cantalk = false;
+    private static bool canopenbag = false;//是否可以打开背包
     private TalkBase CurTalker;
     private Rigidbody2D PlayerRigidDody;
     private BaseTask baseTask;
@@ -68,7 +71,7 @@ public class Player : BaseCharacter
         }
 
     }
-    public void Run()//移动
+    public void Run()//移动 
     {
         if (canmove)
         {
@@ -80,18 +83,34 @@ public class Player : BaseCharacter
         }
     }
 
+    public void OpenMyBag()//打开背包
+    {
+        if (canopenbag)
+        {
+            if(Input.GetKeyDown(KeyCode.B) )
+            {
+                myBag.SetActive(!myBag.activeSelf);
+               
+            }
+        }
+        
+    }
+
     public static void Lock()
     {
         cantalk = false;
         canmove = false;
+        canopenbag = false;
         SystemMediator.GetSystemMediator().GetUISystem().Lock();
     }
 
+    
 
     public static void UnLock()//对话结束
     {
         cantalk = true;
         canmove = true;
+        canopenbag = true;
         SystemMediator.GetSystemMediator().GetUISystem().UnLock();
     } 
 }
