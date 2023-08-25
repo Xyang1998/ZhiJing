@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 80f2fb6bee860f849a1ce3733a1c25d8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - STXingkai
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e7097767ec81b4543b08d5f3337ea55f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
