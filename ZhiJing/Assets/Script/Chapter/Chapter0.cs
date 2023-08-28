@@ -8,7 +8,7 @@ using UnityEngine;
 public class Chapter0 : TalkBase
 {
 
-    public void Start()
+    public override void Start()
     {
         base.Start();
         StartCoroutine(Chapter0Start());
@@ -16,7 +16,7 @@ public class Chapter0 : TalkBase
 
     public  IEnumerator Chapter0Start()
     {
-        Player.Lock();
+        PlayerController.Lock();
         /*_flowchart = gameObject.AddComponent<Flowchart>();
         Dial dial = new Dial(1,"a","我是被创建的dial",2);
         Debug.Log("Start");

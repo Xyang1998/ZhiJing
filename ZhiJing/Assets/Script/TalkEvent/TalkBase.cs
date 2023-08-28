@@ -53,10 +53,10 @@ public class TalkBase : NPC
     }
 
 
-    public void Start()
+    public virtual void Start()
     {
         Load();
-        SystemMediator.GetSystemMediator().GetEventSystem().saveaction += Save;
+        SystemMediator.Instance.eventSystem.saveaction += Save;
         TaskSystem.GetTaskSystem().AddNPC(this);
     }
 
@@ -72,12 +72,12 @@ public class TalkBase : NPC
 
     public virtual bool PlayerItemsCheck(List<int> list) //检查玩家是否有物品
     {
-        return PlayerController.GetPlayerController().ItemsCheck(list);
+        return SystemMediator.Instance.playerController.ItemsCheck(list);
     }
 
     public virtual void PlayerItemsUse(List<int> list) //检查玩家是否有并使用物品
     {
-        PlayerController.GetPlayerController().ItemsUse(list);
+        SystemMediator.Instance.playerController.ItemsUse(list);
     }
 
     public void Load() //读取，下次对话ID，位置，好感度等

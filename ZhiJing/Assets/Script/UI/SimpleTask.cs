@@ -22,7 +22,7 @@ public class SimpleTask : MonoBehaviour,IPointerClickHandler
 
    public void OnPointerClick(PointerEventData pointerEventData)
    {
-      SystemMediator.GetSystemMediator().GetUISystem().detailedTask.GetComponent<DetailedTask>().SetTask(_baseTask);
+      SystemMediator.Instance.uisystem.detailedTask.GetComponent<DetailedTask>().SetTask(_baseTask);
    }
    
 }

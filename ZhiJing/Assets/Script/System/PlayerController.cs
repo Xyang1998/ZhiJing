@@ -9,11 +9,17 @@ using UnityEngine.Events;
 
 public class PlayerController : ISystem
 {
-    private Player player;
-    private static  PlayerController playercontroller;
+    
+    private Rigidbody2D PlayerRigidDody;
+    public float MoveSpeed = 5;
+    public Player player; //控制的角色物体
 
-    private PlayerState _playerState;
-    // Start is called before the first frame update
+
+    private float InputX;
+    private static bool canMove = true;
+    private static bool canTalk = false;
+    
+    private TalkBase CurTalker;
     public override void Init()
     {
         GetPlayerComp();
@@ -21,48 +27,41 @@ public class PlayerController : ISystem
     // Update is called once per frame
     public override void Tick()
     {
-        player.TalkTo();
-    }
-    private void Update()
-    {
-        player.Run();
-        player.OpenMyBag();//打开背包 使用fixedupdate会出现卡顿
-        
-    }
-    void GetPlayerComp()
-    {
-        player=Player.GetPlayer();
-        _playerState = player.GetComponent<PlayerState>();
+        if (canTalk)
+        {
+            TalkTo();
+        }
+
+        if (canMove)
+        {
+
+            Run();
+        }
     }
 
-    public Player GetPlayer()
+    void GetPlayerComp()
     {
-        return player;
+        PlayerRigidDody = GetComponent<Rigidbody2D>();
     }
-    public static PlayerController GetPlayerController()
-    {
-        if (!playercontroller)
-        {
-            playercontroller = FindObjectOfType<PlayerController>();
-            
-        }
-        return playercontroller;
-    }
+
+
+
     public void IntelligenceChange(float x)
     {
-        _playerState.IntelligenceChange(x);
+        player.playerState.IntelligenceChange(x);
     }
     public void RenYiChange(float x)
     {
-        _playerState.RenYiChange(x);
+        player.playerState.RenYiChange(x);
     }
     public void YangHuiChange(float x)
     {
-       _playerState.YangHuiChange(x);
+        player.playerState.YangHuiChange(x);
     }
     public void PlayerTalkEnd()
     {
-        Player.UnLock();
+       UnLock();
+       _systemMediator.uisystem.UnLock();
     }
     public bool ItemsCheck(List<int> list)
     {
@@ -79,21 +78,21 @@ public class PlayerController : ISystem
         switch (condition)
         {
             case Condition.More:
-                if ((float)method.Invoke(_playerState, null) >= value)
+                if ((float)method.Invoke(player.playerState, null) >= value)
                 {
                     return true;
                 }
 
                 return false;
             case Condition.Less:
-                if ((float)method.Invoke(_playerState, null) <= value)
+                if ((float)method.Invoke(player.playerState, null) <= value)
                 {
                     return true;
                 }
 
                 return false;
             case Condition.Equal:
-                if (Mathf.Abs((float)method.Invoke(_playerState, null) - value)<=0.1)
+                if (Mathf.Abs((float)method.Invoke(player.playerState, null) - value)<=0.1)
                 {
                     return true;
                 }
@@ -116,12 +115,12 @@ public class PlayerController : ISystem
 
     public Vector3 GetPlayerPos()
     {
-        return player.transform.position;
+        return transform.position;
     }
 
     public void SetPlayerPos(Vector3 Pos)
     {
-        player.transform.position = Pos;
+        transform.position = Pos;
     }
 
     public void SavePlayerPos()
@@ -149,5 +148,67 @@ public class PlayerController : ISystem
     {
         //SetPlayerPos(playerState.LoadPos());
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("IN:"+other.name);
+        CurTalker = other.GetComponent<TalkBase>();
+        canTalk = true;
+        _systemMediator.uisystem.Showinteracting(CurTalker.talkmessage);
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("OUT:"+other.name);
+        CurTalker = other.GetComponent<TalkBase>();
+        canTalk = false;
+        _systemMediator.uisystem.Hideinteracting();
+    }
+    public void Run()//移动 
+    {
+        InputX = Input.GetAxis("Horizontal");
+        Vector2 input = new Vector2(InputX, 0);
+        player.Turn(input.x);
+        PlayerRigidDody.velocity = input * MoveSpeed;
+        //动画部分
+    }
+    
+    public bool TalkCheck()
+    {
+        if (canTalk)
+        {
+            if (CurTalker)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void TalkTo()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && TalkCheck())
+        {
+            Lock();
+            _systemMediator.uisystem.Lock();
+            CurTalker.StartTalk();
+            //PlayerController.GetPlayerController()._systemMediator.Hideinteracting();
+        }
+
+    }
+
+    public static void Lock()
+    {
+        canMove = false;
+        canTalk = false;
+        
+    }
+
+    public static void UnLock()
+    {
+        canMove = true;
+        canTalk = true;
+    }
+    
+
+
 
 }

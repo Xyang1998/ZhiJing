@@ -30,7 +30,7 @@ public class TaskSystem : ISystem //任务管理
     public override void Init() //读取当前任务表
     {
         Load();
-        SystemMediator.GetSystemMediator().GetEventSystem().saveaction += Save;
+        SystemMediator.Instance.eventSystem.saveaction += Save;
     }
 
     public string GetNPCNameByID(int id)
@@ -102,7 +102,7 @@ public class TaskSystem : ISystem //任务管理
     public bool CheckPlayerValues(QuestAcceptCondition questAcceptCondition)
     {
         PlayerValueCondition[] playerValueConditions = questAcceptCondition.playerValueConditions;
-        PlayerController playerController= _systemMediator.GetPlayerController();
+        PlayerController playerController= _systemMediator.playerController;
         foreach (PlayerValueCondition playerValueCondition in playerValueConditions)
         {
             if (!playerController.PlayerValueChcek(playerValueCondition.value, playerValueCondition.condition,
@@ -130,7 +130,7 @@ public class TaskSystem : ISystem //任务管理
             {
                 _tasks.Add(task.ID, task);
                 task.Init();
-                _systemMediator.GetUISystem().AddTask(task);
+                _systemMediator.uisystem.AddTask(task);
             }
             else
             {
@@ -195,7 +195,7 @@ public class TaskSystem : ISystem //任务管理
             task.UnBind();
             _tasks.Remove(task.ID);
             _finishTasks.Add(task.ID,task);
-            _systemMediator.GetUISystem().FinishTask(task.ID);
+            _systemMediator.uisystem.FinishTask(task.ID);
         }
     }
 

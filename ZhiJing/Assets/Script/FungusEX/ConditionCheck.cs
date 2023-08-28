@@ -13,7 +13,7 @@ public class ConditionCheck : Command
 
    public override void OnEnter()
    {
-      if (PlayerController.GetPlayerController().ItemsCheck(list))
+      if (SystemMediator.Instance.playerController.ItemsCheck(list))
       {
          if (var != null)
          {

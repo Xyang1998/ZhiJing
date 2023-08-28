@@ -7,7 +7,7 @@ public class TalkStart : Command
 {
     public override void OnEnter()
     {
-        PlayerController.GetPlayerController().PlayerTalkEnd();
+        SystemMediator.Instance.playerController.PlayerTalkEnd();
         Continue();
     }
 }

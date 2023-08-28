@@ -10,7 +10,7 @@ public class EyesOpen : Command
     public override void OnEnter()
     {
         base.OnEnter();
-        StartCoroutine(eyesOpen());
+        //StartCoroutine(eyesOpen());
         Continue();
     }
 

@@ -4,42 +4,39 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SystemMediator : MonoBehaviour
+public class SystemMediator : SingletonMono<SystemMediator>
 {
     public GameObject eventSystemObj;
     public GameObject uiSystemobj;
-    private EventSystem eventSystem;
-    private UISystem uisystem;
-    private PlayerController playerController;
-    private TaskSystem taskSystem;
-    private static SystemMediator _systemMediator;
 
-    public static SystemMediator GetSystemMediator()
+    public EventSystem eventSystem
     {
-        if (!_systemMediator)
-        {
-            _systemMediator = GameObject.FindObjectOfType<SystemMediator>().GetComponent<SystemMediator>();
-            
-        }
-
-        return _systemMediator;
-    }
-
-    public UISystem GetUISystem()
-    {
-        return uisystem;
-    }
-
-    public EventSystem GetEventSystem()
-    {
-        return eventSystem;
+        get;
+        private set;
         
     }
 
-    public PlayerController GetPlayerController()
+    public UISystem uisystem
     {
-        return playerController;
+        get;
+        private set;
     }
+
+    public PlayerController playerController
+    {
+        get;
+        private set;
+    }
+
+    public TaskSystem taskSystem
+    {
+        get;
+        private set;
+    }
+   
+
+
+
     
     
 
@@ -53,7 +50,7 @@ public class SystemMediator : MonoBehaviour
         
         //Init
         Init();
-        _systemMediator = this; //
+
     }
 
     private void Update()
@@ -67,7 +64,7 @@ public class SystemMediator : MonoBehaviour
     {
         eventSystem = eventSystemObj.GetComponent<EventSystem>();
         uisystem = uiSystemobj.GetComponent<UISystem>();
-        playerController=PlayerController.GetPlayerController();
+        playerController=FindObjectOfType<PlayerController>();
         taskSystem = GetComponent<TaskSystem>();
     }
 
@@ -88,15 +85,7 @@ public class SystemMediator : MonoBehaviour
         HandleNewGame();
     }
 
-    public void Showinteracting(string talkmessage)
-    {
-        uisystem.Showinteracting(talkmessage);
-    }
 
-    public void Hideinteracting()
-    {
-        uisystem.Hideinteracting();
-    }
 
     public bool NewGameCheck()
     {

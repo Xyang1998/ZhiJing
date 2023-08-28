@@ -16,18 +16,22 @@ public struct State
     public float RenYi;
     public float YangHui;
 }
-public class PlayerState : MonoBehaviour
+public class PlayerState 
 {
     private State state;
     private string FilePath = Application.streamingAssetsPath + "/State.json";
     public TaskTest TaskTest;
+    
 
     private void Start()
     {
         TaskTest = Resources.Load<TaskTest>("TaskTest");
-        Debug.Log(TaskTest.a);
-        Load();
-        SystemMediator.GetSystemMediator().GetEventSystem().saveaction += Save;
+        SystemMediator.Instance.eventSystem.saveaction += Save;
+    }
+
+    public PlayerState()
+    {
+        state = new State(0, 0, 0);
     }
 
     public void Save()
