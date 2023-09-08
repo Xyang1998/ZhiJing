@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class Player : BaseCharacter
 {
-
     public PlayerState playerState;
+    
 
 
 

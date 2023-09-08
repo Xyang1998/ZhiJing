@@ -415,6 +415,12 @@
      <Reference Include="unityplastic">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
      </Reference>
+     <Reference Include="ExcelDataReader">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader.DataSet">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+     </Reference>
      <Reference Include="nunit.framework">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>

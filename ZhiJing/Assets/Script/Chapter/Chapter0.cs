@@ -35,12 +35,12 @@ public class Chapter0 : TalkBase
     public override void StartTalk()
     {
         
-        EyesOpen eyesOpen = Undo.AddComponent<EyesOpen>(gameObject);
+       /* EyesOpen eyesOpen = Undo.AddComponent<EyesOpen>(gameObject);
         Block block = _flowchart.FindBlock("20");
         eyesOpen.ParentBlock = block;
         eyesOpen.ItemId = _flowchart.NextItemId();
         eyesOpen.OnCommandAdded(block);
-        block.CommandList.Insert(1,eyesOpen);
+        block.CommandList.Insert(1,eyesOpen);*/
         base.StartTalk();
 
     }

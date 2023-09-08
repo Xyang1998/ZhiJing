@@ -46,17 +46,18 @@
      <Compile Include="Assets\Script\System\MainMenuSystem.cs" />
      <Compile Include="Assets\Script\FungusEX\EyesOpen.cs" />
      <Compile Include="Assets\Script\System\Inventory\ItemInScene.cs" />
+     <Compile Include="Assets\Script\Utils\DialStruct.cs" />
      <Compile Include="Assets\Script\FungusEX\IntelligenceCheck.cs" />
      <Compile Include="Assets\Script\Character\NPC.cs" />
-     <Compile Include="Assets\Script\FungusEX\TalkEnd.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\TalkEnd.cs" />
      <Compile Include="Assets\Script\System\Inventory\Item.cs" />
      <Compile Include="Assets\Script\Chapter\Chapter0.cs" />
      <Compile Include="Assets\Script\FungusEX\ConditionCheck.cs" />
      <Compile Include="Assets\Script\System\UI\UISystem.cs" />
-     <Compile Include="Assets\Script\FungusEX\TalkStart.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\TalkStart.cs" />
      <Compile Include="Assets\Script\System\ISystem.cs" />
      <Compile Include="Assets\Script\Character\BaseCharacter.cs" />
-     <Compile Include="Assets\Script\FungusEX\MySay.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\MySay.cs" />
      <Compile Include="Assets\Script\Test.cs" />
      <Compile Include="Assets\Script\Character\Player.cs" />
      <Compile Include="Assets\Script\System\PlayerController.cs" />
@@ -64,15 +65,18 @@
      <Compile Include="Assets\Script\FungusEX\YangHuiChcek.cs" />
      <Compile Include="Assets\Script\UI\DetailedTask.cs" />
      <Compile Include="Assets\Script\UI\SimpleTask.cs" />
+     <Compile Include="Assets\Script\Utils\Enums.cs" />
      <Compile Include="Assets\Script\TalkEvent\TalkObject.cs" />
      <Compile Include="Assets\Script\Character\PlayerState.cs" />
      <Compile Include="Assets\Script\System\TaskSystem.cs" />
-     <Compile Include="Assets\Script\FungusEX\GivePlayerTask.cs" />
-     <Compile Include="Assets\Script\FungusEX\MyCall.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\GivePlayerTask.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\MyCall.cs" />
      <Compile Include="Assets\Script\System\CameraController.cs" />
+     <Compile Include="Assets\Script\Utils\CreateEXManager.cs" />
      <Compile Include="Assets\Script\System\Inventory\Inventory.cs" />
+     <Compile Include="Assets\Script\ComputeTest.cs" />
      <Compile Include="Assets\Script\TalkEvent\TalkCharacter.cs" />
-     <Compile Include="Assets\Script\FungusEX\MyMenu.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\MyMenu.cs" />
      <Compile Include="Assets\Script\System\UI\Displayable.cs" />
      <Compile Include="Assets\Script\Utils\SingletonMono.cs" />
      <Compile Include="Assets\Script\FungusEX\RenYiCheck.cs" />
@@ -81,12 +85,9 @@
      <Compile Include="Assets\Script\Task\BaseTask.cs" />
      <Compile Include="Assets\Script\System\Inventory\InventoryManager.cs" />
      <Compile Include="Assets\Script\Task\TaskTest.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\MyOption.cs" />
      <None Include="Assets\StreamingAssets\test.json" />
      <None Include="Assets\StreamingAssets\State.json" />
-     <None Include="Assets\StreamingAssets\Chapter0\旁白_19.json" />
-     <None Include="Assets\StreamingAssets\Chapter0\旁白_20.json" />
-     <None Include="Assets\StreamingAssets\Chapter0\旁白_1.json" />
-     <None Include="Assets\StreamingAssets\Chapter0\椅子_26.json" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -350,6 +351,12 @@
      </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader.DataSet">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Android.Types">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -884,6 +891,26 @@
     <ProjectReference Include="Fungus.FungusLuaEditor.csproj">
       <Project>{dc704d28-09bd-7251-296a-f34aab1ce205}</Project>
       <Name>Fungus.FungusLuaEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Addressables.csproj">
+      <Project>{ca59854e-18ee-40bf-08fc-0c06cffc7bd7}</Project>
+      <Name>UniTask.Addressables</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.DOTween.csproj">
+      <Project>{0dfcbe42-d668-140c-9e2b-0da9d958aa32}</Project>
+      <Name>UniTask.DOTween</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{cd9417fc-bd30-bcfc-9ab8-020eb887caae}</Project>
+      <Name>UniTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{e4a90c6b-ada3-be36-d1bc-43908ae02968}</Project>
+      <Name>UniTask.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.Linq.csproj">
+      <Project>{f3fe8e4a-6366-dd56-861f-90e89ae71296}</Project>
+      <Name>UniTask.Linq</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

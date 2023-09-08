@@ -30,7 +30,7 @@ MonoBehaviour:
   taskObjectives:
     collectiveObjectives: []
     talkObjectives:
-    - curAmount: 1
+    - curAmount: 0
       amount: 1
       NPCID: 1
       DialID: 36

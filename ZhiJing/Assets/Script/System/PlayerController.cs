@@ -48,15 +48,15 @@ public class PlayerController : ISystem
 
     public void IntelligenceChange(float x)
     {
-        player.playerState.IntelligenceChange(x);
+        //player.playerState.IntelligenceChange(x);
     }
     public void RenYiChange(float x)
     {
-        player.playerState.RenYiChange(x);
+        //player.playerState.RenYiChange(x);
     }
     public void YangHuiChange(float x)
     {
-        player.playerState.YangHuiChange(x);
+        //player.playerState.YangHuiChange(x);
     }
     public void PlayerTalkEnd()
     {

@@ -36,8 +36,8 @@ public class Test : MonoBehaviour
     void Start()
     {
         data.Dials = new Dial[2];
-        Dial dial1 = new Dial(0, "a", "asd", "1");
-        Dial dial2=new Dial(1,"a","asd","2");
+        Dial dial1 = new Dial(0, "1","a", "asd", "");
+        Dial dial2=new Dial(1,"1","a","asd","");
         data.Dials[0] = dial1;
         data.Dials[1] = dial2;
         Debug.Log(data.Dials.Length);

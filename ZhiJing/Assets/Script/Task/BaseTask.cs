@@ -50,7 +50,7 @@ public class BaseTask : ScriptableObject
 
     private void Bind() 
     {
-        TaskSystem taskSystem = TaskSystem.GetTaskSystem();
+        TaskSystem taskSystem = SystemMediator.Instance.taskSystem;
         foreach (CollectiveObjective collectiveObjective in taskObjectives.collectiveObjectives)
         {
             taskSystem.addItemAction += collectiveObjective.AddItemAmount;
@@ -68,7 +68,7 @@ public class BaseTask : ScriptableObject
 
     public void UnBind() //任务完成后调用
     {
-        TaskSystem taskSystem = TaskSystem.GetTaskSystem();
+        TaskSystem taskSystem = SystemMediator.Instance.taskSystem;
         foreach (CollectiveObjective collectiveObjective in taskObjectives.collectiveObjectives)
         {
             taskSystem.addItemAction -= collectiveObjective.AddItemAmount;
@@ -90,8 +90,11 @@ public class BaseTask : ScriptableObject
 [Serializable]
 public class Objective
 {
-    public int curAmount; //当前数量
-    public int amount=1; //完成数量
+    [Tooltip("当前数量")]
+    public int curAmount; 
+    
+    [Tooltip("任务完成所需数量")]
+    public int amount=1; 
 
     public bool isComplete //是否完成目标
     {

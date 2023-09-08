@@ -1,24 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Reflection;
+using System.Reflection.Emit;
 using UnityEngine;
 [System.Serializable]
 public struct State
 {
+    
+    private float intelligence;
+    /// <summary>
+    /// 
+    /// </summary>
+    public float Intelligence
+    {
+        get => intelligence;
+        set
+        {
+            intelligence = intelligence + value >= 0 ? intelligence + value : 0;
+        }
+    }
+    
+    private float renYi;
+
+    /// <summary>
+    /// 仁义值
+    /// </summary>
+    public float RenYi
+    {
+        get => renYi;
+        set
+        {
+            renYi = renYi + value >= 0 ? renYi + value : 0;
+        }
+    }
+    
+    private float yangHui;
+
+    public float YangHui
+    {
+        get => yangHui;
+        set
+        {
+            yangHui = yangHui + value >= 0 ? yangHui + value : 0;
+            
+        }
+    }
     public State(float I,float R,float Y)
     {
-        Intelligence = I;
-        RenYi=R;
-        YangHui=Y;
+        intelligence = I;
+        renYi=R;
+        yangHui=Y;
+       
     }
-    public float Intelligence;
-    public float RenYi;
-    public float YangHui;
+
+
+
 }
 public class PlayerState 
 {
     private State state;
+    private Type stateType;
     private string FilePath = Application.streamingAssetsPath + "/State.json";
     public TaskTest TaskTest;
     
@@ -32,6 +76,7 @@ public class PlayerState
     public PlayerState()
     {
         state = new State(0, 0, 0);
+        stateType = typeof(State);
     }
 
     public void Save()
@@ -55,30 +100,37 @@ public class PlayerState
         Debug.Log(state.YangHui);
 
     }
-    public void IntelligenceChange(float x)
+
+    /// <summary>
+    /// 用于检查玩家属性是否满足某一条件
+    /// </summary>
+    /// <param name="valueName">需要检查的属性名</param>
+    /// <param name="right">将该属性如何对比？ example:">=1"</param>
+    /// <returns></returns>
+    public bool ValueCheck(string valueName,string right)
     {
-        state.Intelligence = state.Intelligence+x>=0?state.Intelligence+x:0;
+        float value = GetValue(valueName);
+        bool result = (bool)(new DataTable().Compute($"{value}" + right, ""));
+        return result;
     }
-    public void RenYiChange(float x)
+    
+    private float GetValue(string valueName)
     {
-        state.RenYi = state.RenYi+x>=0?state.RenYi+x:0;
-    }
-    public void YangHuiChange(float x)
-    {
-        state.YangHui = state.YangHui+x>0?state.YangHui+x:0;
+        PropertyInfo propertyInfo = stateType.GetProperty(valueName);
+        if (propertyInfo != null)
+        {
+            return (float)propertyInfo.GetValue(state);
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    public float GetPlayerIntelligence()
-    {
-        return state.Intelligence;
-    }
-    public float GetPlayerRenYi()
-    {
-        return state.RenYi;
-    }
-    public float GetPlayerYangHui()
-    {
-        return state.YangHui;
-    }
+ 
+
+
+
+
     
 }

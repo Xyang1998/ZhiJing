@@ -33,11 +33,6 @@ public class SystemMediator : SingletonMono<SystemMediator>
         get;
         private set;
     }
-   
-
-
-
-    
     
 
     private void Awake()
@@ -50,6 +45,7 @@ public class SystemMediator : SingletonMono<SystemMediator>
         
         //Init
         Init();
+        
 
     }
 

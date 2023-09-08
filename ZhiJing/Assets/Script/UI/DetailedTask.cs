@@ -29,7 +29,7 @@ public class DetailedTask : MonoBehaviour
 
         foreach (var objective in task.taskObjectives.talkObjectives)
         {
-            text += "与" + TaskSystem.GetTaskSystem().GetNPCNameByID(objective.NPCID) +
+            text += "与" + SystemMediator.Instance.taskSystem.GetNPCNameByID(objective.NPCID) +
                     String.Format("交谈 [{0}/{1}]", objective.curAmount, objective.amount)+"\n";
         }
         text+="<b>任务奖励</b>"+"\n";

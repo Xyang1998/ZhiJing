@@ -10,7 +10,7 @@ using UnityEngine.Events;
 [Serializable]
 public class TaskSystem : ISystem //任务管理
 {
-    private static TaskSystem _taskSystem;
+
 
     private Dictionary<int,BaseTask> _tasks=new Dictionary<int, BaseTask>(); //存放当前任务
 
@@ -47,17 +47,7 @@ public class TaskSystem : ISystem //任务管理
     {
         return _tasks;
     }
-
-    public static TaskSystem GetTaskSystem()
-    {
-        if (!_taskSystem)
-        {
-            _taskSystem = GameObject.FindObjectOfType<TaskSystem>().GetComponent<TaskSystem>();
-
-        }
-
-        return _taskSystem;
-    }
+    
 
     public void Load()
     {
@@ -122,7 +112,7 @@ public class TaskSystem : ISystem //任务管理
         return true;
     }
 
-    public IEnumerator AcceptTask(BaseTask task)
+    public void  AcceptTask(BaseTask task)
     {
         if (!_tasks.ContainsKey(task.ID))
         {
@@ -132,13 +122,10 @@ public class TaskSystem : ISystem //任务管理
                 task.Init();
                 _systemMediator.uisystem.AddTask(task);
             }
-            else
-            {
 
-            }
         }
 
-        yield return null;
+
     }
 
     public void AddItemAction(int id,int num)

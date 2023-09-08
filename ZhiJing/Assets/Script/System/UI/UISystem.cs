@@ -87,6 +87,7 @@ public class UISystem : ISystem
     {
         Destroy(_simpleTasks[id].gameObject);
         _simpleTasks.Remove(id);
+        detailedTask.GetComponent<DetailedTask>().ClearText();
     }
 
     public void ShowUI(Displayable displayable)
