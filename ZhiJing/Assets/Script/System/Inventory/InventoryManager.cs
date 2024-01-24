@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : SingletonMono<InventoryManager>
+public class InventoryManager : ISystem
 {
 
     public GameObject slotGrid; //背包格子
@@ -18,42 +18,54 @@ public class InventoryManager : SingletonMono<InventoryManager>
 
         
     }
-    private void OnEnable()
+    public override void Init()
     {
         RefreshItem();
-        Instance.itemInformation.text = "";//重新加载背包UI时，物品描述栏清空
+        itemInformation.text = "";//重新加载背包UI时，物品描述栏清空
     }
-    public static  void UpdateItemInfo(string itemDescription)//更新物品描述栏
+    public  void UpdateItemInfo(string itemDescription)//更新物品描述栏
     {
-        Instance.itemInformation.text = itemDescription;
+        itemInformation.text = itemDescription;
     }
 
-    public static void UpdateItemName(string itemName)
+    public  void UpdateItemName(string _itemName)
     {
-        Instance.itemName.text = itemName;
+        itemName.text = _itemName;
     }
     //将后端mybag列表中item的信息获得，然后传送给UI的slot；
-    public static void CreateNewItem(Item item)
+    public  void CreateNewItem(Item item)
     {
-        Slot newItem = Instantiate(Instance.slotPrefab, Instance.slotGrid.transform.position, quaternion.identity);//创建slot对象
-        newItem.gameObject.transform.SetParent(Instance.slotGrid.transform); //设置位置
+        mybag.itemList.Add(item);
+        Slot newItem = Instantiate(slotPrefab, slotGrid.transform.position, quaternion.identity);//创建slot对象
+        newItem.gameObject.transform.SetParent(slotGrid.transform); //设置位置
         newItem.slotItem = item;
         newItem.soltImage.sprite = item.itemImage;
     }
-    public static void RefreshItem()//重新加载背包
+
+    public void AddItemToBagByID(int id)
     {
-        for (int i = 0; i < Instance.slotGrid.transform.childCount; i++)//在刷新背包UI前，先清空背包UI里的物品
+        var temp = Resources.Load<Item>($"Inventory/Items/{id}");
+        if (temp != null)
         {
-            if (Instance.slotGrid.transform.childCount == 0)
+            Item item = Instantiate(temp);
+            CreateNewItem(item);
+        }
+        
+    }
+    public  void RefreshItem()//重新加载背包
+    {
+        for (int i = 0; i < slotGrid.transform.childCount; i++)//在刷新背包UI前，先清空背包UI里的物品
+        {
+            if (slotGrid.transform.childCount == 0)
             {
                 break;
             }
-            Destroy(Instance.slotGrid.transform.GetChild(i).gameObject);
+            Destroy(slotGrid.transform.GetChild(i).gameObject);
             
         }
-        for (int i = 0; i < Instance.mybag.itemList.Count; i++)//从后端baglist重新加载背包UI的物品
+        for (int i = 0; i < mybag.itemList.Count; i++)//从后端baglist重新加载背包UI的物品
         {
-            CreateNewItem(Instance.mybag.itemList[i]);
+            CreateNewItem(mybag.itemList[i]);
         }
     }
 }

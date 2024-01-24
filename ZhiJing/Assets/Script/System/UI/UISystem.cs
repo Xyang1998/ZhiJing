@@ -66,11 +66,10 @@ public class UISystem : ISystem
 
     public void AddTask(BaseTask task)
     {
-        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/SimpleTask"));
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefabs/UI/SimpleTask"),taskContent.transform);
         SimpleTask simpleTask = go.GetComponent<SimpleTask>();
         simpleTask.SetTask(task);
         _simpleTasks.Add(simpleTask.taskID,simpleTask);
-        go.transform.SetParent(taskContent.transform);
     }
 
     public void Lock()

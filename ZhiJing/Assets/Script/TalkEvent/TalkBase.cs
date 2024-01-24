@@ -34,7 +34,6 @@ public class NPCState
 public class TalkBase : NPC
 {
     public NPCState state;
-    public string Name;
     public Flowchart _flowchart;
     public string talkmessage;
     public string DailogPath; //对话文本
@@ -55,11 +54,10 @@ public class TalkBase : NPC
     }
 
 
-    public virtual void Start()
+    public override void Start()
     {
         Load();
         SystemMediator.Instance.eventSystem.saveaction += Save;
-        SystemMediator.Instance.taskSystem.AddNPC(this);
     }
 
     public void SetIDAndTalk(int id)

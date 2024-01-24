@@ -8,9 +8,9 @@ public class NPC : BaseCharacter
 {
     
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame

@@ -298,6 +298,12 @@
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
+     <Reference Include="ExcelDataReader">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader.DataSet">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Plastic.Antlr3.Runtime">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
@@ -333,12 +339,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader.DataSet">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Android.Types">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>

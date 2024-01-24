@@ -43,8 +43,8 @@ public class ItemInScene : MonoBehaviour
     {
         if (!playerBag.itemList.Contains(thisItem))
         {
-            playerBag.itemList.Add(thisItem);//向后端添加物品
-            InventoryManager.CreateNewItem(thisItem);//从后端获取物品信息，传送给UI
+            //playerBag.itemList.Add(thisItem);//向后端添加物品
+            SystemMediator.Instance.inventoryManager.CreateNewItem(thisItem);//从后端获取物品信息，传送给UI
         }
     }
 

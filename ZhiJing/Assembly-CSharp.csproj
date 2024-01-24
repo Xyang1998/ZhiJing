@@ -58,6 +58,7 @@
      <Compile Include="Assets\Script\System\ISystem.cs" />
      <Compile Include="Assets\Script\Character\BaseCharacter.cs" />
      <Compile Include="Assets\Script\FungusEX\New\MySay.cs" />
+     <Compile Include="Assets\Script\Utils\ConditionCheckUtils.cs" />
      <Compile Include="Assets\Script\Test.cs" />
      <Compile Include="Assets\Script\Character\Player.cs" />
      <Compile Include="Assets\Script\System\PlayerController.cs" />
@@ -66,9 +67,12 @@
      <Compile Include="Assets\Script\UI\DetailedTask.cs" />
      <Compile Include="Assets\Script\UI\SimpleTask.cs" />
      <Compile Include="Assets\Script\Utils\Enums.cs" />
+     <Compile Include="Assets\Script\Utils\SLInterface.cs" />
      <Compile Include="Assets\Script\TalkEvent\TalkObject.cs" />
      <Compile Include="Assets\Script\Character\PlayerState.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\MyOption.cs" />
      <Compile Include="Assets\Script\System\TaskSystem.cs" />
+     <Compile Include="Assets\Script\FungusEX\New\GivePlayerItem.cs" />
      <Compile Include="Assets\Script\FungusEX\New\GivePlayerTask.cs" />
      <Compile Include="Assets\Script\FungusEX\New\MyCall.cs" />
      <Compile Include="Assets\Script\System\CameraController.cs" />
@@ -85,7 +89,6 @@
      <Compile Include="Assets\Script\Task\BaseTask.cs" />
      <Compile Include="Assets\Script\System\Inventory\InventoryManager.cs" />
      <Compile Include="Assets\Script\Task\TaskTest.cs" />
-     <Compile Include="Assets\Script\FungusEX\New\MyOption.cs" />
      <None Include="Assets\StreamingAssets\test.json" />
      <None Include="Assets\StreamingAssets\State.json" />
      <Reference Include="UnityEngine">
@@ -331,6 +334,12 @@
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
+     <Reference Include="ExcelDataReader">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader.DataSet">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Burst.Unsafe">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.burst@1.6.5\Unity.Burst.Unsafe.dll</HintPath>
      </Reference>
@@ -351,12 +360,6 @@
      </Reference>
      <Reference Include="Newtonsoft.Json">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader.DataSet">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Android.Types">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -888,9 +891,9 @@
       <Project>{5224e9b4-96da-aa7c-c859-cd773c4140be}</Project>
       <Name>Fungus.LineEndingsEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="Fungus.FungusLuaEditor.csproj">
-      <Project>{dc704d28-09bd-7251-296a-f34aab1ce205}</Project>
-      <Name>Fungus.FungusLuaEditor</Name>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{e4a90c6b-ada3-be36-d1bc-43908ae02968}</Project>
+      <Name>UniTask.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.Addressables.csproj">
       <Project>{ca59854e-18ee-40bf-08fc-0c06cffc7bd7}</Project>
@@ -900,17 +903,17 @@
       <Project>{0dfcbe42-d668-140c-9e2b-0da9d958aa32}</Project>
       <Name>UniTask.DOTween</Name>
     </ProjectReference>
-    <ProjectReference Include="UniTask.csproj">
-      <Project>{cd9417fc-bd30-bcfc-9ab8-020eb887caae}</Project>
-      <Name>UniTask</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniTask.TextMeshPro.csproj">
-      <Project>{e4a90c6b-ada3-be36-d1bc-43908ae02968}</Project>
-      <Name>UniTask.TextMeshPro</Name>
-    </ProjectReference>
     <ProjectReference Include="UniTask.Linq.csproj">
       <Project>{f3fe8e4a-6366-dd56-861f-90e89ae71296}</Project>
       <Name>UniTask.Linq</Name>
+    </ProjectReference>
+    <ProjectReference Include="Fungus.FungusLuaEditor.csproj">
+      <Project>{dc704d28-09bd-7251-296a-f34aab1ce205}</Project>
+      <Name>Fungus.FungusLuaEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.csproj">
+      <Project>{cd9417fc-bd30-bcfc-9ab8-020eb887caae}</Project>
+      <Name>UniTask</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

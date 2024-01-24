@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class SystemMediator : SingletonMono<SystemMediator>
 {
-    public GameObject eventSystemObj;
-    public GameObject uiSystemobj;
-
+    
     public EventSystem eventSystem
     {
         get;
@@ -29,6 +27,12 @@ public class SystemMediator : SingletonMono<SystemMediator>
     }
 
     public TaskSystem taskSystem
+    {
+        get;
+        private set;
+    }
+
+    public InventoryManager inventoryManager
     {
         get;
         private set;
@@ -58,8 +62,9 @@ public class SystemMediator : SingletonMono<SystemMediator>
 
     private void GetSystem()
     {
-        eventSystem = eventSystemObj.GetComponent<EventSystem>();
-        uisystem = uiSystemobj.GetComponent<UISystem>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        eventSystem = FindObjectOfType<EventSystem>();
+        uisystem = FindObjectOfType<UISystem>();
         playerController=FindObjectOfType<PlayerController>();
         taskSystem = GetComponent<TaskSystem>();
     }
@@ -70,6 +75,7 @@ public class SystemMediator : SingletonMono<SystemMediator>
         eventSystem.setMediator(this);
         uisystem.setMediator(this);
         taskSystem.setMediator(this);
+        inventoryManager.setMediator(this);
     }
 
     private void Init()
@@ -78,6 +84,7 @@ public class SystemMediator : SingletonMono<SystemMediator>
         playerController.Init();
         uisystem.Init();
         taskSystem.Init();
+        inventoryManager.Init();
         HandleNewGame();
     }
 

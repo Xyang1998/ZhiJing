@@ -16,7 +16,7 @@ public class TaskSystem : ISystem //任务管理
 
     private Dictionary<int, BaseTask> _finishTasks=new Dictionary<int, BaseTask>(); //已完成任务
 
-    private Dictionary<int, TalkBase> _talkBases = new Dictionary<int, TalkBase>(); //保存当前所有可交互NPC
+    private Dictionary<int, BaseCharacter> baseCharacters = new Dictionary<int, BaseCharacter>(); //保存当前所有可交互NPC
 
     private Dictionary<string, GameObject> _characters = new Dictionary<string, GameObject>(); //保存Say所需Character
 
@@ -35,7 +35,7 @@ public class TaskSystem : ISystem //任务管理
 
     public string GetNPCNameByID(int id)
     {
-        return _talkBases[id].Name;
+        return baseCharacters[id].Name;
     }
 
     public override void Tick()
@@ -146,11 +146,11 @@ public class TaskSystem : ISystem //任务管理
         StartCoroutine(CheckTasks());
     }
 
-    public void AddNPC(TalkBase npc)
+    public void AddNPC(BaseCharacter c)
     {
-        if (!_talkBases.ContainsKey(npc.ID))
+        if (!baseCharacters.ContainsKey(c.ID))
         {
-            _talkBases.Add(npc.ID,npc);
+            baseCharacters.Add(c.ID,c);
         }
     }
 

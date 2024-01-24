@@ -303,10 +303,10 @@
      <Compile Include="Assets\Fungus\Scripts\VariableTypes\AudioSourceVariable.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Scripts\Components\LuaBindings.cs" />
      <Compile Include="Assets\Fungus\Scripts\Commands\Math\Inv.cs" />
-     <Compile Include="Assets\Fungus\Scripts\Commands\Vector3\Vector3Arithmetic.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\MoonSharp\Interpreter\Tree\Statements\CompositeStatement.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\MoonSharp\Interpreter\DataTypes\SymbolRef.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\MoonSharp\Interpreter\Execution\VM\CallStackItemFlags.cs" />
+     <Compile Include="Assets\Fungus\Scripts\Commands\Vector3\Vector3Arithmetic.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\MoonSharp\Interpreter\Interop\IUserDataDescriptor.cs" />
      <Compile Include="Assets\Fungus\Scripts\Commands\Break.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\MoonSharp\Interpreter\Interop\IUserDataType.cs" />
@@ -972,6 +972,12 @@
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
+     <Reference Include="ExcelDataReader">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
+     </Reference>
+     <Reference Include="ExcelDataReader.DataSet">
+     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Plastic.Antlr3.Runtime">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
@@ -1007,12 +1013,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Library\PackageCache\com.unity.collab-proxy@1.15.16\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.dll</HintPath>
-     </Reference>
-     <Reference Include="ExcelDataReader.DataSet">
-     <HintPath>E:\ZhiJing-main\ZhiJing-main\ZhiJing\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Android.Types">
      <HintPath>D:\Program Files\2021.3.2f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
