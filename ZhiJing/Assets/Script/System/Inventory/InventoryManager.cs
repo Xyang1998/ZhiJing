@@ -63,7 +63,9 @@ public class InventoryManager : ISystem
             Destroy(slotGrid.transform.GetChild(i).gameObject);
             
         }
-        for (int i = 0; i < mybag.itemList.Count; i++)//从后端baglist重新加载背包UI的物品
+
+        int count = mybag.itemList.Count;
+        for (int i = 0; i < count; i++)//从后端baglist重新加载背包UI的物品
         {
             CreateNewItem(mybag.itemList[i]);
         }

@@ -75,7 +75,10 @@ public class SystemMediator : SingletonMono<SystemMediator>
         eventSystem.setMediator(this);
         uisystem.setMediator(this);
         taskSystem.setMediator(this);
-        inventoryManager.setMediator(this);
+        if (inventoryManager)
+        {
+            inventoryManager.setMediator(this);
+        }
     }
 
     private void Init()
@@ -84,7 +87,11 @@ public class SystemMediator : SingletonMono<SystemMediator>
         playerController.Init();
         uisystem.Init();
         taskSystem.Init();
-        inventoryManager.Init();
+        if (inventoryManager)
+        {
+            inventoryManager.Init();
+        }
+
         HandleNewGame();
     }
 

@@ -77,21 +77,28 @@ public class ExcelLoader<T>
             System.Object t = Activator.CreateInstance<T>();
             for (int i = 0; i < fieldInfos.Length; i++)
             {
-               Debug.Log(excelDataReader.GetValue(i).ToString());
-               if (i == 0)
+               try
                {
-                  fieldInfos[i].SetValue(t, int.Parse(excelDataReader.GetValue(i).ToString()));
-               }
-               else
-               {
-                  if (fieldInfos[i].FieldType == typeof(int))
+                  Debug.Log(excelDataReader.GetValue(i).ToString());
+                  if (i == 0)
                   {
                      fieldInfos[i].SetValue(t, int.Parse(excelDataReader.GetValue(i).ToString()));
                   }
                   else
                   {
-                     fieldInfos[i].SetValue(t, excelDataReader.GetValue(i).ToString());
+                     if (fieldInfos[i].FieldType == typeof(int))
+                     {
+                        fieldInfos[i].SetValue(t, int.Parse(excelDataReader.GetValue(i).ToString()));
+                     }
+                     else
+                     {
+                        fieldInfos[i].SetValue(t, excelDataReader.GetValue(i).ToString());
+                     }
                   }
+               }
+               catch (Exception e)
+               {
+                  Debug.Log(e);
                }
             }
             

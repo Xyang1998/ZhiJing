@@ -7,7 +7,9 @@ using System.Reflection;
 using Fungus;
 using UnityEditor;
 
-
+/// <summary>
+/// 根据xls表中type字段去创建对应命令，扩充type对应增加一个CreateTypeName方法
+/// </summary>
 public static class CreateCommand
 {
     private static Type t = typeof(CreateCommand);
@@ -21,7 +23,7 @@ public static class CreateCommand
         }
         else
         {
-            Debug.LogError($"没有找到名为Create{dial.type}的方法！");
+            Debug.Log($"没有找到名为Create{dial.type}的方法！");
         }
     }
 
@@ -78,6 +80,15 @@ public static class CreateCommand
         say.InitMenuList(Menulist);
 
 
+    }
+
+    public static void CreatePlayerChange(BaseCharacter myCharacter, Flowchart flowchart, Block block, ref Dial dial)
+    {
+        //TODO:改变玩家某属性
+    }
+    public static void CreateNPCChange(BaseCharacter myCharacter, Flowchart flowchart, Block block, ref Dial dial)
+    {
+        //TODO:改变NPC某属性
     }
 
 

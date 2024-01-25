@@ -98,7 +98,7 @@ public class TalkBase : NPC
 
     }
 
-    public async UniTaskVoid CreateFlowChart() //字符串解析
+    public async UniTaskVoid CreateFlowChart() //字符串解析 
     {
         string path = Application.streamingAssetsPath + "/Chapter" + Chapter;
         DirectoryInfo directoryInfo = new DirectoryInfo(path);
